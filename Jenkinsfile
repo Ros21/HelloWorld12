@@ -20,7 +20,8 @@ pipeline {
       steps {
         echo "deploying the application... "
       }
-    }    
+    }  
+    }  
     post {
     	always {
     		echo "Always: Mail to Members"
@@ -32,5 +33,4 @@ pipeline {
     		echo "Success: Mail to Members"
     	}
     }
- }
 }
