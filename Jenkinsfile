@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters {
+  	choice(name: 'VERSION', choices: ['1.1.0', '1.2.0','1.3.0'], description: '')
+  }
   environment {
    	NEW_VERSION = '1.3.0'
    	SERVER_CREDENTIALS = credentials('server_credentials')
@@ -14,6 +17,7 @@ pipeline {
     }
 
     stage("test") {
+    	echo "deploying version ${params.VERSION}"
     	when {
     		expression {
     			BRANCH_NAME =='dev' || BRANCH_NAME == 'master1'
@@ -34,6 +38,7 @@ pipeline {
     
       steps {
         echo "deploying the application... "
+
         echo "CREDENTIALS: ${SERVER_CREDENTIALS} "
       }
     }  
