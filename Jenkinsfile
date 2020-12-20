@@ -9,6 +9,11 @@ pipeline {
     }
 
     stage("test") {
+    	when {
+    		expression {
+    			BRANCH_NAME =='dev' || BRANCH_NAME == 'master'
+    		}
+    	}
     
       steps {
         echo "testing the application... "
@@ -22,15 +27,4 @@ pipeline {
       }
     }  
     }  
-    post {
-    	always {
-    		echo "Always: Mail to Members"
-    	}
-    	failure {
-    		echo "Failure: Mail to Members"
-    	}
-    	 success {
-    		echo "Success: Mail to Members"
-    	}
-    }
 }
