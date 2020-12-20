@@ -17,7 +17,7 @@ pipeline {
     }
 
     stage("test") {
-    	echo "deploying version ${params.VERSION}"
+
     	when {
     		expression {
     			BRANCH_NAME =='dev' || BRANCH_NAME == 'master1'
@@ -38,7 +38,7 @@ pipeline {
     
       steps {
         echo "deploying the application... "
-
+        echo "deploying version ${params.VERSION}"
         echo "CREDENTIALS: ${SERVER_CREDENTIALS} "
       }
     }  
